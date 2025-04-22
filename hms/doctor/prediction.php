@@ -85,7 +85,7 @@
   </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
     <!-- Left Side: Form for Heart Disease Prediction -->
     <div class="left-col">
       <h2>Heart Disease Prediction</h2>
@@ -192,6 +192,7 @@
       <div class="result" id="result"></div>
     </div>
 
+
    <!-- Right Side: API Values -->
 <div class="right-col" style="margin-top: 30px;">
   <h3 style="text-align:center; color:#333; margin-bottom: 15px;">
@@ -273,8 +274,8 @@
         .then((res) => res.json())
         .then((data) => {
           resultDiv.innerHTML = `
-            <p><strong>Heart Disease Risk:</strong> ${data['Heart Disease Risk']}</p>
-            <p><strong>Recommendation:</strong> ${data['Recommendation']}</p>
+            <p><strong>Result:</strong> ${data["message"]}</p>
+            <p><strong>Recommendation:</strong> ${data["suggestion"]}</p>
           `;
         })
         .catch((err) => {

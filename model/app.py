@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pickle
 import numpy as np
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all origins (or use: CORS(app, origins=['http://localhost']))
 
-# Load the model and scaler at the start to avoid reloading for every request
+# Load model and scaler
 def load_model():
     with open("heart_probability_model.pkl", "rb") as f:
         data = pickle.load(f)
@@ -12,45 +14,34 @@ def load_model():
 
 model, scaler = load_model()
 
-# Heart Disease Prediction Function
+# Prediction function
 def predict_heart_disease_risk(input_features):
     if not isinstance(input_features, list) or len(input_features) != 13:
         return {"error": "Invalid input. Please provide a list of 13 numeric features."}
 
     try:
-        # Preprocess input
         input_array = np.array(input_features).reshape(1, -1)
         input_scaled = scaler.transform(input_array)
 
-        # Predict probability
-        probability = model.predict_proba(input_scaled)[0][1]
-        percent = round(probability * 100, 2)
+        prediction = model.predict(input_scaled)[0]
 
-        # Suggestion based on risk
-        if percent >= 75:
+        if prediction == 1:
             suggestion = "🔴 High Risk: Recommend ECG, Echo, Stress Test, and Angiography."
-        elif percent >= 50:
-            suggestion = "🟠 Medium Risk: Recommend ECG, Echo, and Blood Test."
-        elif percent >= 25:
-            suggestion = "🟡 Low Risk: Recommend Lifestyle Check & Regular Monitoring."
         else:
-            suggestion = "🟢 Very Low Risk: No urgent tests, maintain healthy lifestyle."
+            suggestion = "🟢 Low Risk: Maintain a healthy lifestyle."
 
-        # Return structured response
         return {
-            "risk_percent": percent,
-            "message": f"❤️ Heart Disease Risk: {percent}%",
+            "prediction": prediction,
+            "message": f"Heart Disease Risk: {'High' if prediction == 1 else 'Low'}",
             "suggestion": suggestion
         }
 
     except Exception as e:
         return {"error": f"Prediction failed: {str(e)}"}
 
-# API endpoint to make prediction
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get the input data (13 features) from the JSON request body
         input_data = request.get_json()
         input_features = input_data.get("features")
 
@@ -58,13 +49,10 @@ def predict():
             return jsonify({"error": "Please provide exactly 13 numeric features."}), 400
 
         result = predict_heart_disease_risk(input_features)
-
-        # Return the result as JSON
         return jsonify(result)
 
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
-# Run the app
 if __name__ == "__main__":
     app.run(debug=True)
