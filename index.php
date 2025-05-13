@@ -195,35 +195,35 @@ echo "<script>window.location.href ='index.php'</script>";
                 <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-heartbeat"></i>
-                        <h5>Cardiology</h5>
+                        <h5>Heart Disease Risk Prediction</h5>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-ribbon"></i>
-                        <h5>Orthopaedic</h5>
+                        <h5>Live Heart Rate Monitoring</h5>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                        <i class="fab fa-monero"></i>
-                        <h5>Neurologist</h5>
+                        <h5>User Roles and Dashboards</h5>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-capsules"></i>
-                        <h5>Pharma Pipeline</h5>
+                        <h5>Patient Health Data Entry</h5>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-prescription-bottle-alt"></i>
-                        <h5>Pharma Team</h5>
+                        <h5>Doctor Consultation & Feedback</h5>
                     </div>
                 </div>
 
