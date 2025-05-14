@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Disease Prediction</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            flex-basis: 45%;
+            margin-right: 10px;
+        }
+        .form-group input {
+            flex-basis: 45%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Kidney Disease Prediction Form</h2>
+        <form action="/predict-kidney" method="POST">
+            <div class="form-group">
+                <label for="Gender">Gender:</label>
+                <input type="number" id="Gender" name="Gender" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="Age">Age:</label>
+                <input type="number" id="Age" name="Age" required>
+            </div>
+            <div class="form-group">
+                <label for="HasDiabetes">Has Diabetes (0/1):</label>
+                <input type="number" id="HasDiabetes" name="HasDiabetes" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="HasHeartDisease">Has Heart Disease (0/1):</label>
+                <input type="number" id="HasHeartDisease" name="HasHeartDisease" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="HasVascularDisease">Has Vascular Disease (0/1):</label>
+                <input type="number" id="HasVascularDisease" name="HasVascularDisease" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="HasSmokingHistory">Has Smoking History (0/1):</label>
+                <input type="number" id="HasSmokingHistory" name="HasSmokingHistory" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="HasHighBloodPressure">Has High Blood Pressure (0/1):</label>
+                <input type="number" id="HasHighBloodPressure" name="HasHighBloodPressure" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="HasHighCholesterol">Has High Cholesterol (0/1):</label>
+                <input type="number" id="HasHighCholesterol" name="HasHighCholesterol" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="HasObesity">Has Obesity (0/1):</label>
+                <input type="number" id="HasObesity" name="HasObesity" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="TakesCholesterolMeds">Takes Cholesterol Meds (0/1):</label>
+                <input type="number" id="TakesCholesterolMeds" name="TakesCholesterolMeds" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="TakesDiabetesMeds">Takes Diabetes Meds (0/1):</label>
+                <input type="number" id="TakesDiabetesMeds" name="TakesDiabetesMeds" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="TakesBloodPressureMeds">Takes Blood Pressure Meds (0/1):</label>
+                <input type="number" id="TakesBloodPressureMeds" name="TakesBloodPressureMeds" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="TakesACEIorARB">Takes ACEI or ARB (0/1):</label>
+                <input type="number" id="TakesACEIorARB" name="TakesACEIorARB" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="CholesterolLevel">Cholesterol Level:</label>
+                <input type="number" id="CholesterolLevel" name="CholesterolLevel" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="CreatinineLevel">Creatinine Level:</label>
+                <input type="number" id="CreatinineLevel" name="CreatinineLevel" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="KidneyFunction_eGFR">Kidney Function (eGFR):</label>
+                <input type="number" id="KidneyFunction_eGFR" name="KidneyFunction_eGFR" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="SystolicBloodPressure">Systolic Blood Pressure:</label>
+                <input type="number" id="SystolicBloodPressure" name="SystolicBloodPressure" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="DiastolicBloodPressure">Diastolic Blood Pressure:</label>
+                <input type="number" id="DiastolicBloodPressure" name="DiastolicBloodPressure" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="BodyMassIndex">Body Mass Index (BMI):</label>
+                <input type="number" id="BodyMassIndex" name="BodyMassIndex" step="0.01" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>

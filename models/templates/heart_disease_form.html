@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 50px auto;
+            max-width: 600px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            flex-basis: 45%;
+            margin-right: 10px;
+        }
+        .form-group input {
+            flex-basis: 45%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction Form</h2>
+        <form action="/predict-heart" method="POST">
+            <div class="form-group">
+                <label for="rest_bp">Resting Blood Pressure:</label>
+                <input type="number" id="rest_bp" name="rest_bp" required>
+            </div>
+            <div class="form-group">
+                <label for="chest_pain">Chest Pain Type (0-3):</label>
+                <input type="number" id="chest_pain" name="chest_pain" min="0" max="3" required>
+            </div>
+            <div class="form-group">
+                <label for="thalassemia">Thalassemia (0-3):</label>
+                <input type="number" id="thalassemia" name="thalassemia" min="0" max="3" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="fasting_bs">Fasting Blood Sugar (1/0):</label>
+                <input type="number" id="fasting_bs" name="fasting_bs" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="max_hr">Maximum Heart Rate:</label>
+                <input type="number" id="max_hr" name="max_hr" required>
+            </div>
+            <div class="form-group">
+                <label for="exercise_angina">Exercise Induced Angina (1/0):</label>
+                <input type="number" id="exercise_angina" name="exercise_angina" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender (1=Male, 0=Female):</label>
+                <input type="number" id="gender" name="gender" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="st_slope">ST Slope (0-2):</label>
+                <input type="number" id="st_slope" name="st_slope" min="0" max="2" required>
+            </div>
+            <div class="form-group">
+                <label for="cholesterol">Cholesterol:</label>
+                <input type="number" id="cholesterol" name="cholesterol" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="st_depression">ST Depression:</label>
+                <input type="number" id="st_depression" name="st_depression" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="rest_ecg">Resting ECG (0-2):</label>
+                <input type="number" id="rest_ecg" name="rest_ecg" min="0" max="2" required>
+            </div>
+            <div class="form-group">
+                <label for="num_vessels">Number of Major Vessels (0-3):</label>
+                <input type="number" id="num_vessels" name="num_vessels" min="0" max="3" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
