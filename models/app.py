@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify
 import pickle
 import numpy as np
 import os
@@ -43,7 +43,7 @@ def pneumonia_disease_form():
 # Handle Heart Disease Prediction
 @app.route('/predict-heart', methods=['POST'])
 def predict_heart_disease():
-    # Get the form data for heart disease
+   # Get the form data for heart disease
     rest_bp = float(request.form['rest_bp'])
     chest_pain = int(request.form['chest_pain'])
     thalassemia = int(request.form['thalassemia'])
@@ -71,6 +71,40 @@ def predict_heart_disease():
     # Return the result for heart disease
     result = "The patient is likely to have heart disease." if prediction[0] == 1 else "The patient is unlikely to have heart disease."
     return render_template('result.html', result=result)
+    
+@app.route('/predict-heart-json', methods=['POST'])
+def predict_heart_disease_json():
+    # Get the JSON data for heart disease
+    data = request.get_json()
+
+    # Access the data from the JSON object
+    rest_bp = float(data['rest_bp'])
+    chest_pain = int(data['chest_pain'])
+    thalassemia = int(data['thalassemia'])
+    age = int(data['age'])
+    fasting_bs = int(data['fasting_bs'])
+    max_hr = int(data['max_hr'])
+    exercise_angina = int(data['exercise_angina'])
+    gender = int(data['gender'])
+    st_slope = int(data['st_slope'])
+    cholesterol = float(data['cholesterol'])
+    st_depression = float(data['st_depression'])
+    rest_ecg = int(data['rest_ecg'])
+    num_vessels = int(data['num_vessels'])
+
+    # Create a NumPy array for model input
+    features = np.array([[rest_bp, chest_pain, thalassemia, age, fasting_bs, max_hr, exercise_angina,
+                          gender, st_slope, cholesterol, st_depression, rest_ecg, num_vessels]])
+
+    # Scale the features using heart disease scaler (assuming you've loaded the scaler)
+    features_scaled = heart_scaler.transform(features)
+
+    # Make the prediction using the heart disease model (assuming you've loaded the model)
+    prediction = heart_model.predict(features_scaled)
+
+    # Return the result for heart disease
+    result = "The patient is likely to have heart disease." if prediction[0] == 1 else "The patient is unlikely to have heart disease."
+    return jsonify({"prediction": result})
 
 # Handle Kidney Disease Prediction
 @app.route('/predict-kidney', methods=['POST'])
